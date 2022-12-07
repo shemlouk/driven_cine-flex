@@ -15,3 +15,20 @@
   --unavailable-border: #f7c52b;
   --shadow: rgba(0, 0, 0, 0.1);
 }
+
+* {
+  font-family: "Roboto", sans-serif !important;
+  box-sizing: border-box;
+}
+
+@keyframes jumping {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
