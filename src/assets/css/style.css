@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
+
+:root {
+  --main-color: #e8833a;
+  --header-background: #c3cfd9;
+  --footer-background: #dfe6ed;
+  --footer-border: #9eadba;
+  --font-blue: #293845;
+  --font-green: #247a6b;
+  --available: #c3cfd9;
+  --available-border: #7b8b99;
+  --selected: #1aae9e;
+  --selected-border: #0e7d71;
+  --unavailable: #fbe192;
+  --unavailable-border: #f7c52b;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
