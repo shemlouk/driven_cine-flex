@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
   top: 0px;
   left: 0px;
   z-index: 1;
-  box-shadow: 0px 5px 10px 0px var(--shadow);
+  box-shadow: 0px 3px 10px 0px var(--shadow);
 
   a {
     text-decoration: none;

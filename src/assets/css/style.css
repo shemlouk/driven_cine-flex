@@ -2,6 +2,7 @@
 
 :root {
   --main-color: #e8833a;
+  --main-color-darker: #d87a37;
   --header-background: #c3cfd9;
   --footer-background: #dfe6ed;
   --footer-border: #9eadba;
@@ -19,6 +20,7 @@
 * {
   font-family: "Roboto", sans-serif !important;
   box-sizing: border-box;
+  color: var(--font-blue);
 }
 
 @keyframes jumping {
