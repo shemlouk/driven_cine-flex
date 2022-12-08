@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Container from "./Container";
-import Header from "./Header";
 import Loading from "./Loading";
 import Poster from "./Poster";
 
@@ -23,7 +23,9 @@ export default function MainPage() {
   const showMovies = () =>
     movies.map((m) => (
       <li key={m.id}>
-        <Poster posterURL={m.posterURL} />
+        <Link to={`/sessoes/${m.id}`}>
+          <Poster posterURL={m.posterURL} />
+        </Link>
       </li>
     ));
 
@@ -31,7 +33,6 @@ export default function MainPage() {
 
   return (
     <>
-      <Header />
       <Container>
         <p>Selecione o filme</p>
         <StyledUl>{isDataLoaded() ? showMovies() : <Loading />}</StyledUl>

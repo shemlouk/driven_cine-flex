@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Header() {
   return (
     <StyledHeader>
-      <a href=".">
+      <Link to="/">
         <h1>CINEFLEX</h1>
-      </a>
+      </Link>
     </StyledHeader>
   );
 }

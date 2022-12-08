@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Card from "./Card";
 import Container from "./Container";
 import Footer from "./Footer";
-import Header from "./Header";
 import Loading from "./Loading";
 
 const API_URL_SESSIONS = (id) =>
@@ -12,23 +12,23 @@ const API_URL_SESSIONS = (id) =>
 
 export default function SessionsPage() {
   const [sessions, setSessions] = useState({});
-  const [sessionID, setSessionID] = useState(3);
+  const { sessionID } = useParams();
 
   useEffect(() => {
+    console.log(API_URL_SESSIONS(sessionID));
     axios
       .get(API_URL_SESSIONS(sessionID))
       .then((res) => setSessions(res.data))
       .catch((error) =>
         alert(`Não foi possível carregar os dados\n${error.message}`)
       );
-  }, [sessionID]);
+  }, []);
 
   const showCards = () => sessions.days.map((d) => <Card key={d.id} {...d} />);
   const isDataLoaded = () => Object.keys(sessions).length !== 0;
 
   return (
     <>
-      <Header />
       <Container adjustBottom="true">
         <p>Selecione o horário</p>
         <StyledUl>{isDataLoaded() ? showCards() : <Loading />}</StyledUl>
