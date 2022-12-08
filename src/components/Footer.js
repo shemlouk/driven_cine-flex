@@ -1,13 +1,20 @@
 import styled from "styled-components";
 import Poster from "./Poster";
 
-export default function Footer({ title, posterURL }) {
+export default function Footer({ title, posterURL, weekday, date }) {
   return (
     <StyledFooter>
       <div>
         <Poster posterURL={posterURL} />
       </div>
-      <p>{title}</p>
+      <div>
+        <p>{title}</p>
+        {(weekday || date) && (
+          <p>
+            {weekday} - {date}
+          </p>
+        )}
+      </div>
     </StyledFooter>
   );
 }
@@ -26,7 +33,7 @@ const StyledFooter = styled.footer`
   box-shadow: 0px -3px 10px 0px var(--shadow);
   z-index: 1;
 
-  div {
+  div:first-child {
     width: 64px;
     height: 89px;
     margin-right: 14px;
@@ -34,5 +41,6 @@ const StyledFooter = styled.footer`
 
   p {
     font-size: 26px;
+    line-height: 31px;
   }
 `;

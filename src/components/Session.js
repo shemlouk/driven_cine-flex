@@ -1,14 +1,19 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import StyledButton from "./StyledButton";
 
 export default function Card({ weekday, date, showtimes }) {
-  const time = `${weekday} - ${date}`;
   return (
     <StyledLi>
-      <p>{time}</p>
+      <p>
+        {weekday} - {date}
+      </p>
       <StyledUl>
         {showtimes.map((s) => (
           <li key={s.id}>
-            <StyledButton>{s.name}</StyledButton>
+            <Link to={`/assentos/${s.id}`}>
+              <StyledButton>{s.name}</StyledButton>
+            </Link>
           </li>
         ))}
       </StyledUl>
@@ -28,21 +33,4 @@ const StyledLi = styled.li`
 const StyledUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
-`;
-
-const StyledButton = styled.button`
-  width: 83px;
-  height: 43px;
-  background-color: var(--main-color);
-  color: white;
-  border: none;
-  border-radius: 3px;
-  font-size: 18px;
-  margin-right: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  :hover {
-    background-color: var(--main-color-darker);
-  }
 `;
