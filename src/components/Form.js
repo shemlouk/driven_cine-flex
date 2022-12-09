@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
-import StyledButton from "./StyledButton";
 
 const API_URL_POST =
   "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many";
@@ -10,18 +9,8 @@ export default function Form({ selectedSeats }) {
   const [name, setName] = useState(null);
   const [cpf, setCpf] = useState(null);
 
-  function submitForm(e) {
-    e.preventDefault();
-    if (!name || !cpf) {
-      if (!name) setName("");
-      if (!cpf) setCpf("");
-      return;
-    }
-    const data = {
-      ids: selectedSeats,
-      name: name,
-      cpf: cpf,
-    };
+  function submitForm() {
+    const data = { ids: selectedSeats, name: name, cpf: cpf };
     axios
       .post(API_URL_POST, data)
       .then(alert("Reserva realizada com sucesso!"))
@@ -30,29 +19,25 @@ export default function Form({ selectedSeats }) {
       );
   }
 
-  const selectColor = (s) => (s === "" ? "red" : "#d4d4d4");
-
   return (
-    <StyledForm>
+    <StyledForm onSubmit={submitForm}>
       <label htmlFor="name">Nome do comprador:</label>
-      <StyledInput
+      <Input
         onChange={(e) => setName(e.target.value)}
         name="name"
         type="text"
         placeholder="Digite seu nome..."
-        color={selectColor(name)}
-      ></StyledInput>
+        required
+      ></Input>
       <label htmlFor="cpf">CPF do comprador:</label>
-      <StyledInput
+      <Input
         onChange={(e) => setCpf(e.target.value)}
         name="cpf"
         type="number"
         placeholder="Digite seu CPF..."
-        color={selectColor(cpf)}
-      ></StyledInput>
-      <StyledButton onClick={(e) => submitForm(e)}>
-        Reservar assento(s)
-      </StyledButton>
+        required
+      ></Input>
+      <Submit type="submit" value="Reservar assento(s)" />
     </StyledForm>
   );
 }
@@ -69,14 +54,14 @@ const StyledForm = styled.form`
   }
 
   input:last-of-type {
-    margin-bottom: 55px;
+    margin-top: 50px;
   }
 `;
 
-const StyledInput = styled.input`
+const Input = styled.input`
   width: 327px;
   height: 51px;
-  border: 1px solid ${({ color }) => color};
+  border: 1px solid #d4d4d4;
   border-radius: 3px;
   font-size: 18px;
   padding-left: 18px;
@@ -84,5 +69,22 @@ const StyledInput = styled.input`
 
   :focus {
     outline: none;
+  }
+`;
+
+const Submit = styled.input`
+  padding: 0px 20px;
+  height: 43px;
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  :hover {
+    background-color: var(--main-color-darker);
   }
 `;
