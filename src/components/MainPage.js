@@ -8,7 +8,7 @@ import Poster from "./Poster";
 
 const API_URL_MOVIES = "https://mock-api.driven.com.br/api/v8/cineflex/movies";
 
-export default function MainPage() {
+export default function MainPage({ setMovie }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function MainPage() {
     movies.map((m) => (
       <li key={m.id}>
         <Link to={`/sessoes/${m.id}`}>
-          <Poster posterURL={m.posterURL} />
+          <Poster setMovie={setMovie} {...m} />
         </Link>
       </li>
     ));

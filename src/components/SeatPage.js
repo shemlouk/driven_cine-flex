@@ -18,7 +18,7 @@ const legend = [
   { en: "unavailable", pt: "Indisponível" },
 ];
 
-export default function SeatPage() {
+export default function SeatPage({ setInfo }) {
   const [seats, setSeats] = useState({});
   const [selectedSeats, setSelectedSeats] = useState([]);
   const { sessionId } = useParams();
@@ -55,7 +55,7 @@ export default function SeatPage() {
           <>
             <Seats>{showSeats()}</Seats>
             <Legend>{showLegend()}</Legend>
-            <Form selectedSeats={selectedSeats} />
+            <Form {...{ setInfo, selectedSeats }} />
           </>
         ) : (
           <Loading />

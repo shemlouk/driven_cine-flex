@@ -10,7 +10,7 @@ import Loading from "./Loading";
 const API_URL_SESSIONS = (id) =>
   `https://mock-api.driven.com.br/api/v8/cineflex/movies/${id}/showtimes`;
 
-export default function SessionsPage() {
+export default function SessionsPage({ setSession }) {
   const [sessions, setSessions] = useState({});
   const { movieId } = useParams();
 
@@ -24,7 +24,9 @@ export default function SessionsPage() {
   }, []);
 
   const showCards = () =>
-    sessions.days.map((d) => <Session key={d.id} {...d} />);
+    sessions.days.map((d) => (
+      <Session key={d.id} setSession={setSession} {...d} />
+    ));
   const isDataLoaded = () => Object.keys(sessions).length !== 0;
 
   return (

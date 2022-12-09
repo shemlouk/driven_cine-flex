@@ -7,7 +7,7 @@ export default function Seat({
   selectedSeats,
   setSelectedSeats,
 }) {
-  const isSelected = selectedSeats.includes(id);
+  const isSelected = selectedSeats.find((e) => e.id === id);
 
   function selectSeat() {
     if (!isAvailable) {
@@ -15,7 +15,7 @@ export default function Seat({
       return;
     }
     if (!isSelected) {
-      setSelectedSeats([...selectedSeats, id]);
+      setSelectedSeats([...selectedSeats, { id: id, name: name }]);
       return;
     }
     const index = selectedSeats.indexOf(id);

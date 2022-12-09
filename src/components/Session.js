@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import StyledButton from "./StyledButton";
 
-export default function Card({ weekday, date, showtimes }) {
+export default function Card({ weekday, date, showtimes, setSession }) {
   return (
     <StyledLi>
       <p>
@@ -12,7 +12,9 @@ export default function Card({ weekday, date, showtimes }) {
         {showtimes.map((s) => (
           <li key={s.id}>
             <Link to={`/assentos/${s.id}`}>
-              <StyledButton>{s.name}</StyledButton>
+              <StyledButton onClick={() => setSession(`${date} ${s.name}`)}>
+                {s.name}
+              </StyledButton>
             </Link>
           </li>
         ))}

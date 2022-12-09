@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function Poster({ posterURL }) {
-  return <StyledImage src={posterURL} />;
+export default function Poster({ posterURL, setMovie, title }) {
+  return <StyledImage onClick={() => setMovie(title)} src={posterURL} />;
 }
 
 const StyledImage = styled.img`

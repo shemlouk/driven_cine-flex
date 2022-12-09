@@ -14,6 +14,12 @@ const Container = styled.main`
     color: var(--font-blue);
     margin-bottom: 43px;
   }
+
+  .sucess-page {
+    font-weight: 700;
+    color: var(--font-green);
+    text-align: center;
+  }
 `;
 
 export default Container;
