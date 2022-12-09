@@ -18,9 +18,7 @@ export default function Seat({
       setSelectedSeats([...selectedSeats, { id: id, name: name }]);
       return;
     }
-    const index = selectedSeats.indexOf(id);
-    const newList = [...selectedSeats];
-    newList.splice(index, 1);
+    const newList = selectedSeats.filter((s) => s.id !== id);
     setSelectedSeats(newList);
   }
 

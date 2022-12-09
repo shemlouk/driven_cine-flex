@@ -47,6 +47,7 @@ export default function SucessPage({ movie, session, info }) {
 const StyledUl = styled.ul`
   text-align: start;
   width: 100%;
+  margin-bottom: 62px;
 `;
 
 const StyledLi = styled.li`
