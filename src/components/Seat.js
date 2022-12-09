@@ -30,7 +30,11 @@ export default function Seat({
 
   return (
     <li>
-      <SeatButton onClick={() => selectSeat()} color={selectColor()}>
+      <SeatButton
+        data-test="seat"
+        onClick={() => selectSeat()}
+        color={selectColor()}
+      >
         {name}
       </SeatButton>
     </li>

@@ -4,7 +4,7 @@ import StyledButton from "./StyledButton";
 
 export default function Card({ weekday, date, showtimes, setSession }) {
   return (
-    <StyledLi>
+    <StyledLi data-test="movie-day">
       <p>
         {weekday} - {date}
       </p>
@@ -12,7 +12,10 @@ export default function Card({ weekday, date, showtimes, setSession }) {
         {showtimes.map((s) => (
           <li key={s.id}>
             <Link to={`/assentos/${s.id}`}>
-              <StyledButton onClick={() => setSession(`${date} ${s.name}`)}>
+              <StyledButton
+                data-test="showtime"
+                onClick={() => setSession(`${date} ${s.name}`)}
+              >
                 {s.name}
               </StyledButton>
             </Link>

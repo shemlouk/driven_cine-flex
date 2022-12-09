@@ -7,11 +7,16 @@ export default function SucessPage({ movie, session, info }) {
   const seats = info.seats.map((s) => `Assento ${s}`);
 
   const data = [
-    { title: "Filme e sessão", content: [movie, session] },
-    { title: "Ingressos", content: seats },
+    {
+      title: "Filme e sessão",
+      content: [movie, session],
+      attribute: "movie-info",
+    },
+    { title: "Ingressos", content: seats, attribute: "seats-info" },
     {
       title: "Comprador",
       content: [`Nome: ${formatName()}`, `CPF: ${info.cpf}`],
+      attribute: "client-info",
     },
   ];
 
@@ -27,7 +32,7 @@ export default function SucessPage({ movie, session, info }) {
 
         <StyledUl>
           {data.map((d) => (
-            <StyledLi key={d.title}>
+            <StyledLi data-test={d.attribute} key={d.title}>
               {d.title}
               {d.content.map((c, i) => (
                 <p key={i}>{c}</p>
@@ -37,7 +42,7 @@ export default function SucessPage({ movie, session, info }) {
         </StyledUl>
 
         <Link to="/">
-          <StyledButton>Voltar pra Home</StyledButton>
+          <StyledButton data-test="go-home-btn">Voltar pra Home</StyledButton>
         </Link>
       </Container>
     </>

@@ -3,7 +3,7 @@ import Poster from "./Poster";
 
 export default function Footer({ title, posterURL, weekday, date }) {
   return (
-    <StyledFooter>
+    <StyledFooter data-test="footer">
       <div>
         <Poster posterURL={posterURL} />
       </div>

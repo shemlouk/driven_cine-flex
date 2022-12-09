@@ -27,6 +27,7 @@ export default function Form({ setInfo, selectedSeats }) {
     <StyledForm onSubmit={(e) => submitForm(e)}>
       <label htmlFor="name">Nome do comprador:</label>
       <Input
+        data-test="client-name"
         onChange={(e) => setName(e.target.value)}
         name="name"
         type="text"
@@ -35,6 +36,7 @@ export default function Form({ setInfo, selectedSeats }) {
       ></Input>
       <label htmlFor="cpf">CPF do comprador:</label>
       <Input
+        data-test="client-cpf"
         onChange={(e) =>
           setCpf(
             e.target.value.replace(
@@ -52,7 +54,11 @@ export default function Form({ setInfo, selectedSeats }) {
         required
         title="Deve conter 11 dígitos"
       ></Input>
-      <Submit type="submit" value="Reservar assento(s)" />
+      <Submit
+        data-test="book-seat-btn"
+        type="submit"
+        value="Reservar assento(s)"
+      />
     </StyledForm>
   );
 }

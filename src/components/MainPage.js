@@ -22,7 +22,7 @@ export default function MainPage({ setMovie }) {
 
   const showMovies = () =>
     movies.map((m) => (
-      <li key={m.id}>
+      <li data-test="movie" key={m.id}>
         <Link to={`/sessoes/${m.id}`}>
           <Poster setMovie={setMovie} {...m} />
         </Link>
