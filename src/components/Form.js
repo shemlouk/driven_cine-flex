@@ -35,18 +35,13 @@ export default function Form({ selectedSeats, movie, session }) {
       );
   }
 
-  function formatName(str) {
-    const lst = str.split(" ");
-    return lst.map((l) => l.charAt(0).toUpperCase() + l.slice(1)).join(" ");
-  }
-
   return (
     <StyledForm onSubmit={(e) => submitForm(e)}>
       <label htmlFor="name">Nome do comprador:</label>
       <Input
         data-test="client-name"
         value={name}
-        onChange={(e) => setName(formatName(e.target.value))}
+        onChange={(e) => setName(e.target.value)}
         name="name"
         type="text"
         placeholder="Digite seu nome..."
