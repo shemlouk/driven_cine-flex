@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SeatButton from "./SeatButton";
 
 export default function Seat({
@@ -7,33 +8,33 @@ export default function Seat({
   selectedSeats,
   setSelectedSeats,
 }) {
-  const isSelected = selectedSeats.find((e) => e.id === id);
+  const [isSelected, setIsSelected] = useState(false);
 
-  function selectSeat() {
-    if (!isAvailable) {
-      alert("Esse assento não está disponível");
-      return;
-    }
-    if (!isSelected) {
-      setSelectedSeats([...selectedSeats, { id: id, name: name }]);
-      return;
-    }
-    const newList = selectedSeats.filter((s) => s.id !== id);
-    setSelectedSeats(newList);
-  }
+  const selectSeat = () => {
+    setIsSelected(true);
+    setSelectedSeats([...selectedSeats, { id, name }]);
+  };
 
-  function selectColor() {
-    if (isSelected) return "selected";
-    if (isAvailable) return "available";
-    return "unavailable";
-  }
+  const unselectSeat = () => {
+    setIsSelected(false);
+    setSelectedSeats(selectedSeats.filter((s) => s.id !== id));
+  };
 
   return (
     <li>
       <SeatButton
         data-test="seat"
-        onClick={() => selectSeat()}
-        color={selectColor()}
+        onClick={() => {
+          if (!isAvailable) {
+            alert("Esse assento não está disponível");
+            return;
+          }
+          isSelected ? unselectSeat() : selectSeat();
+        }}
+        state={() => {
+          if (!isAvailable) return "unavailable";
+          return isSelected ? "selected" : "available";
+        }}
       >
         {name}
       </SeatButton>

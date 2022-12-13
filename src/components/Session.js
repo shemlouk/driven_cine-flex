@@ -1,32 +1,27 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import StyledButton from "./StyledButton";
+import { Link } from "react-router-dom";
 
-export default function Card({ weekday, date, showtimes, setSession }) {
+export default function Session({ weekday, date, showtimes }) {
   return (
-    <StyledLi data-test="movie-day">
+    <SessionCard data-test="movie-day">
       <p>
         {weekday} - {date}
       </p>
-      <StyledUl>
+      <Showtimes>
         {showtimes.map((s) => (
           <li key={s.id}>
             <Link to={`/assentos/${s.id}`}>
-              <StyledButton
-                data-test="showtime"
-                onClick={() => setSession(`${date} ${s.name}`)}
-              >
-                {s.name}
-              </StyledButton>
+              <StyledButton data-test="showtime">{s.name}</StyledButton>
             </Link>
           </li>
         ))}
-      </StyledUl>
-    </StyledLi>
+      </Showtimes>
+    </SessionCard>
   );
 }
 
-const StyledLi = styled.li`
+const SessionCard = styled.li`
   margin-bottom: 40px;
 
   p {
@@ -35,7 +30,7 @@ const StyledLi = styled.li`
   }
 `;
 
-const StyledUl = styled.ul`
+const Showtimes = styled.ul`
   display: flex;
   flex-wrap: wrap;
 `;

@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Container from "./Container";
-import StyledButton from "./StyledButton";
+import Container from "../Container";
+import StyledButton from "../StyledButton";
+import { Link, useLocation } from "react-router-dom";
 
-export default function SucessPage({ movie, session, info }) {
+export default function SucessPage() {
+  const info = useLocation().state.data;
   const seats = info.seats.map((s) => `Assento ${s}`);
-
   const data = [
     {
       title: "Filme e sessão",
-      content: [movie, session],
+      content: [info.movie, info.session],
       attribute: "movie-info",
     },
     { title: "Ingressos", content: seats, attribute: "seats-info" },

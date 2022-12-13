@@ -1,33 +1,19 @@
-import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import MainPage from "./components/MainPage";
-import SeatPage from "./components/SeatPage";
-import SessionsPage from "./components/SessionsPage";
-import SucessPage from "./components/SucessPage";
+import MainPage from "./components/pages/MainPage";
+import SessionsPage from "./components/pages/SessionsPage";
+import SeatsPage from "./components/pages/SeatsPage";
+import SucessPage from "./components/pages/SucessPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default function App() {
-  const [movie, setMovie] = useState(null);
-  const [session, setSession] = useState(null);
-  const [info, setInfo] = useState(null);
-
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<MainPage setMovie={setMovie} />} />
-        <Route
-          path="/sessoes/:movieId"
-          element={<SessionsPage setSession={setSession} />}
-        />
-        <Route
-          path="/assentos/:sessionId"
-          element={<SeatPage setInfo={setInfo} />}
-        />
-        <Route
-          path="/sucesso"
-          element={<SucessPage {...{ movie, session, info }} />}
-        />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/sessoes/:movieId" element={<SessionsPage />} />
+        <Route path="/assentos/:sessionId" element={<SeatsPage />} />
+        <Route path="/sucesso" element={<SucessPage />} />
       </Routes>
     </BrowserRouter>
   );

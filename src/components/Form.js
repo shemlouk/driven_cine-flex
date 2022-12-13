@@ -1,25 +1,26 @@
+import apiURL from "../apiURL";
 import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const API_URL_POST =
-  "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many";
-
-export default function Form({ setInfo, selectedSeats }) {
-  const navigate = useNavigate();
-  const [name, setName] = useState(null);
+export default function Form({ selectedSeats, movie, session }) {
+  const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
+  const navigate = useNavigate();
 
   function submitForm(e) {
     e.preventDefault();
-    setInfo({ seats: selectedSeats.map((s) => s.name), name: name, cpf: cpf });
-    const data = { ids: selectedSeats.map((s) => s.id), name: name, cpf: cpf };
+    const data = { name, cpf, movie, session };
     axios
-      .post(API_URL_POST, data)
-      .then(navigate("/sucesso"))
+      .post(apiURL.post, { ...data, ids: selectedSeats.map((s) => s.id) })
+      .then(
+        navigate("/sucesso", {
+          state: { data: { ...data, seats: selectedSeats.map((s) => s.name) } },
+        })
+      )
       .catch((error) =>
-        alert(`Não foi possível carregar os dados\n${error.message}`)
+        alert(`Não foi possível enviar os dados\n${error.message}`)
       );
   }
 
@@ -28,6 +29,7 @@ export default function Form({ setInfo, selectedSeats }) {
       <label htmlFor="name">Nome do comprador:</label>
       <Input
         data-test="client-name"
+        value={name}
         onChange={(e) => setName(e.target.value)}
         name="name"
         type="text"
@@ -37,6 +39,7 @@ export default function Form({ setInfo, selectedSeats }) {
       <label htmlFor="cpf">CPF do comprador:</label>
       <Input
         data-test="client-cpf"
+        value={cpf}
         onChange={(e) =>
           setCpf(
             e.target.value.replace(
@@ -46,13 +49,12 @@ export default function Form({ setInfo, selectedSeats }) {
           )
         }
         name="cpf"
-        maxLength="13"
-        value={cpf}
         type="text"
         placeholder="Digite seu CPF..."
-        pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
         required
+        pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
         title="Deve conter 11 dígitos"
+        maxLength="11"
       ></Input>
       <Submit
         data-test="book-seat-btn"
