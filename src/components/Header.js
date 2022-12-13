@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import GoBackButton from "./GoBackButton";
 
 export default function Header() {
   return (
     <StyledHeader>
+      <GoBackButton />
       <Link to="/">
         <h1>CINEFLEX</h1>
       </Link>
