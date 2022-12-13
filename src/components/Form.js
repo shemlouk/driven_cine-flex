@@ -11,17 +11,33 @@ export default function Form({ selectedSeats, movie, session }) {
 
   function submitForm(e) {
     e.preventDefault();
-    const data = { name, cpf, movie, session };
     axios
-      .post(apiURL.post, { ...data, ids: selectedSeats.map((s) => s.id) })
+      .post(apiURL.post, {
+        name: name,
+        cpf: cpf,
+        ids: selectedSeats.map((s) => s.id),
+      })
       .then(
         navigate("/sucesso", {
-          state: { data: { ...data, seats: selectedSeats.map((s) => s.name) } },
+          state: {
+            data: {
+              name: name,
+              cpf: cpf,
+              movie: movie,
+              session: session,
+              seats: selectedSeats.map((s) => s.name),
+            },
+          },
         })
       )
       .catch((error) =>
         alert(`Não foi possível enviar os dados\n${error.message}`)
       );
+  }
+
+  function formatName(str) {
+    const lst = str.split(" ");
+    return lst.map((l) => l.charAt(0).toUpperCase() + l.slice(1)).join(" ");
   }
 
   return (
@@ -30,7 +46,7 @@ export default function Form({ selectedSeats, movie, session }) {
       <Input
         data-test="client-name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setName(formatName(e.target.value))}
         name="name"
         type="text"
         placeholder="Digite seu nome..."

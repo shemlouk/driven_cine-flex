@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Poster from "./Poster";
 
-export default function Footer({ title, posterURL, weekday, date }) {
+export default function Footer({ title, posterURL, weekday, time }) {
   return (
     <StyledFooter data-test="footer">
       <div>
@@ -9,9 +9,9 @@ export default function Footer({ title, posterURL, weekday, date }) {
       </div>
       <div>
         <p>{title}</p>
-        {(weekday || date) && (
+        {(weekday || time) && (
           <p>
-            {weekday} - {date}
+            {weekday} - {time}
           </p>
         )}
       </div>

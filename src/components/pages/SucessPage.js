@@ -15,15 +15,10 @@ export default function SucessPage() {
     { title: "Ingressos", content: seats, attribute: "seats-info" },
     {
       title: "Comprador",
-      content: [`Nome: ${formatName()}`, `CPF: ${info.cpf}`],
+      content: [`Nome: ${info.name}`, `CPF: ${info.cpf}`],
       attribute: "client-info",
     },
   ];
-
-  function formatName() {
-    const lst = info.name.split(" ");
-    return lst.map((l) => l.charAt(0).toUpperCase() + l.slice(1)).join(" ");
-  }
 
   return (
     <>

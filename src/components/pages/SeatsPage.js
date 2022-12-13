@@ -70,7 +70,7 @@ export default function SeatPage() {
             title: data.movie.title,
             posterURL: data.movie.posterURL,
             weekday: data.day.weekday,
-            date: data.day.date,
+            time: data.name,
           }}
         />
       )}
